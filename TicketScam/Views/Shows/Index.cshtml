@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TicketScam.Models.Show>
+
+@{
+    ViewData["Title"] = "All Events";
+}
+
+<h1>Events</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Event</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="row g-0">
+                    <!-- Image Column -->
+                    <div class="col-md-4">
+                        @if (!string.IsNullOrEmpty(item.ImageFileName))
+                        {
+                            <img src="~/images/events/@item.ImageFileName"
+                                 class="img-fluid rounded-start h-100"
+                                 alt="@item.ShowName"
+                                 style="object-fit: cover; height: 200px; width: 100%;">
+                        }
+                        else
+                        {
+                            <img src="https://via.placeholder.com/200x200/6c757d/ffffff?text=No+Image"
+                                 class="img-fluid rounded-start h-100"
+                                 alt="No image available"
+                                 style="object-fit: cover; height: 200px; width: 100%;">
+                        }
+                    </div>
+
+                    <!-- Content Column -->
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ShowName</h5>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar"></i> @item.ShowDate.ToString("MMM dd, yyyy h:mm tt")<br>
+                                    <i class="fas fa-tag"></i> Category: @item.CategoryId<br>
+                                    <i class="fas fa-map-marker-alt"></i> Venue: @item.VenueId
+                                </small>
+                            </p>
+                            <p class="card-text">@item.ShowDescription</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success fs-6">$@item.TicketPrice</span>
+                                <div>
+                                    <a asp-action="Edit" asp-route-id="@item.ShowId" class="btn btn-warning btn-sm">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.ShowId" class="btn btn-info btn-sm">Details</a>
+                                    <a asp-action="Delete" asp-route-id="@item.ShowId" class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        <h4>No events found</h4>
+        <p>There are no events scheduled yet. <a asp-action="Create">Create the first event!</a></p>
+    </div>
+}

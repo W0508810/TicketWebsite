@@ -1,0 +1,67 @@
+﻿@model TicketScam.Models.Show
+
+@{
+    ViewData["Title"] = "Create Show";
+}
+
+<h1>Create Show</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShowName" class="control-label"></label>
+                <input asp-for="ShowName" class="form-control" />
+                <span asp-validation-for="ShowName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShowDescription" class="control-label"></label>
+                <textarea asp-for="ShowDescription" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="ShowDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShowDate" class="control-label"></label>
+                <input asp-for="ShowDate" class="form-control" />
+                <span asp-validation-for="ShowDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TicketPrice" class="control-label"></label>
+                <input asp-for="TicketPrice" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="TicketPrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="VenueId" class="control-label">Venue</label>
+                <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId">
+                    <option value="">-- Select Venue --</option>
+                </select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CategoryId" class="control-label">Category</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ImageFile" class="control-label">Show Image</label>
+                <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
