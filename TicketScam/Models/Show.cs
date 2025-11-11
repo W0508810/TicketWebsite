@@ -29,7 +29,7 @@ namespace TicketScam.Models
      
         public string? ImageFileName { get; set; }
 
-        [NotMapped] // This means this property won't be stored in the database
+        [NotMapped] 
         public IFormFile? ImageFile { get; set; }
         public Venue? Venue { get; set; }
         public Category? Category { get; set; }
